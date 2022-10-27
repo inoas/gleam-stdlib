@@ -530,24 +530,17 @@ pub fn prepend(to list: List(a), item: a) -> List(a) {
   [item, ..list]
 }
 
-fn prepend_list_reverse(list prefix: List(a), to suffix: List(a)) -> List(a) {
-  case prefix {
-    [] -> suffix
-    [head, ..tail] -> prepend_list_reverse(tail, [head, ..suffix])
-  }
-}
-
 fn do_flatten(lists: List(List(a)), acc: List(a)) -> List(a) {
   case lists {
-    [] -> reverse(acc)
-    [a_list, ..rest_lists] ->
-      do_flatten(rest_lists, prepend_list_reverse(a_list, acc))
+    [] -> acc
+    [l, ..rest] -> do_flatten(rest, append(acc, l))
   }
 }
 
 /// Flattens a list of lists into a single list.
 ///
-/// This function traverses all elements twice.
+/// This function runs in linear time, and it traverses and copies all the
+/// inner lists.
 ///
 /// ## Examples
 ///
@@ -558,6 +551,36 @@ fn do_flatten(lists: List(List(a)), acc: List(a)) -> List(a) {
 ///
 pub fn flatten(lists: List(List(a))) -> List(a) {
   do_flatten(lists, [])
+}
+
+fn prepend_list_reverse(list prefix: List(a), to suffix: List(a)) -> List(a) {
+  case prefix {
+    [] -> suffix
+    [head, ..tail] -> prepend_list_reverse(tail, [head, ..suffix])
+  }
+}
+
+fn do_flatten_2(lists: List(List(a)), acc: List(a)) -> List(a) {
+  case lists {
+    [] -> reverse(acc)
+    [a_list, ..rest_lists] ->
+      do_flatten_2(rest_lists, prepend_list_reverse(a_list, acc))
+  }
+}
+
+/// Flattens a list of lists into a single list.
+///
+/// This function traverses all elements twice.
+///
+/// ## Examples
+///
+/// ```gleam
+/// > flatten_2([[1], [2, 3], []])
+/// [1, 2, 3]
+/// ```
+///
+pub fn flatten_2(lists: List(List(a))) -> List(a) {
+  do_flatten_2(lists, [])
 }
 
 /// Maps the list with the given function and then flattens the result.

@@ -16,6 +16,21 @@ if erlang {
       ],
       [
         benchmark.Data(
+          label: "tiny in tiny",
+          data: list.range(1, 10)
+          |> list.repeat(10),
+        ),
+        benchmark.Data(
+          label: "tiny in medium",
+          data: list.range(1, 10)
+          |> list.repeat(1_000),
+        ),
+        benchmark.Data(
+          label: "medium in tiny",
+          data: list.range(1, 1_000)
+          |> list.repeat(10),
+        ),
+        benchmark.Data(
           label: "short in short",
           data: list.range(1, 100)
           |> list.repeat(100),
@@ -23,7 +38,7 @@ if erlang {
         benchmark.Data(
           label: "large in short",
           data: list.range(1, 10_000)
-          |> list.repeat(3),
+          |> list.repeat(100),
         ),
         benchmark.Data(
           label: "short in large",
@@ -34,11 +49,6 @@ if erlang {
           label: "medium in medium",
           data: list.range(1, 1_000)
           |> list.repeat(1_000),
-        ),
-        benchmark.Data(
-          label: "large in large",
-          data: list.range(1, 10_000)
-          |> list.repeat(10_000),
         ),
       ],
     )
