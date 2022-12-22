@@ -353,7 +353,7 @@ inspect(Any) when is_float(Any) ->
 inspect(Binary) when is_binary(Binary) ->
     case inspect_maybe_utf8_string(Binary, []) of
         {ok, InspectedUtf8String} -> InspectedUtf8String;
-        {error, not_an_utf8_string} ->
+        {error, not_a_utf8_string} ->
             Segments = [erlang:integer_to_list(X) || <<X>> <= Binary],
             ["<<", lists:join(", ", Segments), ">>"]
     end;
@@ -414,7 +414,7 @@ inspect_maybe_utf8_string(Binary, Acc) ->
                 Other -> Other
             end,
             inspect_maybe_utf8_string(Rest, [Escaped | Acc]);
-        _ -> {error, not_n_utf8_string}
+        _ -> {error, not_a_utf8_string}
     end.
 
 float_to_string(Float) when is_float(Float) ->
