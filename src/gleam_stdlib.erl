@@ -399,7 +399,7 @@ inspect_list([First | ImproperTail]) ->
 
 inspect_maybe_utf8_string(Binary, Acc) ->
     case Binary of
-        <<>> -> ["\"", lists:reverse(["\"" | Acc])];
+        <<>> -> ["\"", lists:reverse(Acc), "\""];
         <<Head/utf8, Rest/binary>> ->
             Escaped = case Head of
                 % Double quotes:
