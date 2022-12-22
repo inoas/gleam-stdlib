@@ -69,6 +69,28 @@ pub fn parse_test() {
   |> should.equal(Error(Nil))
 }
 
+pub fn base_parse_test() {
+  "100"
+  |> int.base_parse(16)
+  |> should.equal(Ok(256))
+
+  "-100"
+  |> int.base_parse(16)
+  |> should.equal(Ok(-256))
+
+  "100"
+  |> int.base_parse(1)
+  |> should.equal(Error(Nil))
+
+  "100"
+  |> int.base_parse(37)
+  |> should.equal(Error(Nil))
+
+  "AG"
+  |> int.base_parse(16)
+  |> should.equal(Error(Nil))
+}
+
 pub fn to_base_string_test() {
   100
   |> int.to_base_string(16)

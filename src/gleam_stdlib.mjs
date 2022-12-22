@@ -57,6 +57,58 @@ export function int_to_base_string(int, base) {
   return int.toString(base).toUpperCase();
 }
 
+const int_base_patterns = {
+  2: /[^0-1]/,
+  3: /[^0-2]/,
+  4: /[^0-3]/,
+  5: /[^0-4]/,
+  6: /[^0-5]/,
+  7: /[^0-6]/,
+  8: /[^0-7]/,
+  9: /[^0-8]/,
+  10: /[^0-9]/,
+  11: /[^0-9a]/,
+  12: /[^0-9a-b]/,
+  13: /[^0-9a-c]/,
+  14: /[^0-9a-d]/,
+  15: /[^0-9a-e]/,
+  16: /[^0-9a-f]/,
+  17: /[^0-9a-g]/,
+  18: /[^0-9a-h]/,
+  19: /[^0-9a-i]/,
+  20: /[^0-9a-j]/,
+  21: /[^0-9a-k]/,
+  22: /[^0-9a-l]/,
+  23: /[^0-9a-m]/,
+  24: /[^0-9a-n]/,
+  25: /[^0-9a-o]/,
+  26: /[^0-9a-p]/,
+  27: /[^0-9a-q]/,
+  28: /[^0-9a-r]/,
+  29: /[^0-9a-s]/,
+  30: /[^0-9a-t]/,
+  31: /[^0-9a-u]/,
+  32: /[^0-9a-v]/,
+  33: /[^0-9a-w]/,
+  34: /[^0-9a-x]/,
+  35: /[^0-9a-y]/,
+  36: /[^0-9a-z]/,
+};
+
+export function int_from_base_string(string, base) {
+  if (int_base_patterns[base].test(string.replace(/^-/, "").toLowerCase())) {
+    return new Error(Nil);
+  }
+
+  const result = parseInt(string, base);
+
+  if (isNaN(result)) {
+    return new Error(Nil);
+  }
+
+  return new Ok(result);
+}
+
 export function string_replace(string, target, substitute) {
   if (typeof string.replaceAll !== "undefined") {
     return string.replaceAll(target, substitute);
@@ -89,7 +141,7 @@ export function string_length(string) {
     }
     return i;
   } else {
-    return string.match(/./gus).length;
+    return string.match(/./gsu).length;
   }
 }
 
@@ -111,7 +163,7 @@ export function pop_grapheme(string) {
   if (iterator) {
     first = iterator.next().value?.segment;
   } else {
-    first = string.match(/./us)?.[0];
+    first = string.match(/./su)?.[0];
   }
   if (first) {
     return new Ok([first, string.slice(first.length)]);
