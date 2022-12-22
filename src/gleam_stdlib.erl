@@ -414,7 +414,7 @@ inspect_maybe_utf8_string(Binary, Acc) ->
                 Other -> Other
             end,
             inspect_maybe_utf8_string(Rest, [Escaped | Acc]);
-        _Else -> {error, not_an_utf8_string}
+        _ -> {error, not_n_utf8_string}
     end.
 
 float_to_string(Float) when is_float(Float) ->
