@@ -356,7 +356,7 @@ inspect(Binary) when is_binary(Binary) ->
         {error, not_an_utf8_string} ->
             Segments = [erlang:integer_to_list(X) || <<X>> <= Binary],
             ["<<", lists:join(", ", Segments), ">>"]
-        end;
+    end;
 inspect(List) when is_list(List) ->
     case inspect_list(List) of
         {proper, Elements} -> ["[", Elements, "]"];
