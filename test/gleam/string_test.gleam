@@ -601,7 +601,6 @@ pub fn inspect_test() {
   string.inspect("")
   |> should.equal("\"\"")
 
-  // FIXME: Test fails
   string.inspect("\\")
   |> should.equal(string.concat([q, b, b, q]))
   string.inspect("\\")
