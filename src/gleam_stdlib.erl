@@ -356,7 +356,7 @@ inspect(Binary) when is_binary(Binary) ->
             Segments = [erlang:integer_to_list(X) || <<X>> <= Binary],
             ["<<", lists:join(", ", Segments), ">>"];
         InspectedUtf8String ->
-            ["\"", InspectedUtf8String, "\""]
+            ["\"", lists:reverse(InspectedUtf8String), "\""]
         end;
 inspect(List) when is_list(List) ->
     case inspect_list(List) of
@@ -414,7 +414,7 @@ inspect_maybe_utf8_string(Binary, Acc) ->
                 09 -> "\\t";
                 Other -> Other
             end,
-            inspect_maybe_utf8_string(Rest, Acc ++ [Escaped]);
+            inspect_maybe_utf8_string(Rest, [Escaped | Acc]);
         _Else -> not_an_utf8_string
     end.
 
