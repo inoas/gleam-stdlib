@@ -396,21 +396,20 @@ inspect_maybe_utf8_string(Binary, Acc) ->
             Acc;
 
         <<Head/utf8, Rest/binary>> ->
-            io_lib:format("~p", [Head]),
-            Head2 = case Head of
-                "\\" -> "a";
-                <<"\\">> -> "b";
-                <<"\\"/utf8>> -> "c";
-                <<"\\\\">> -> "d";
-                <<"\\\\"/utf8>> -> "e";
-                "\"" -> "\\\"";
-                "\r" -> "\\r";
-                "\n" -> "\\n";
-                "\t" -> "\\t";
-                "\r\n" -> "\\r\\n";
+            Escaped = case Head of
+                % Double quotes:
+                34 -> "\\\"";
+                % Backslash:
+                92 -> "\\\\";
+                % Carriage return (CR):
+                13 -> "\\r";
+                % Line feed (LF):
+                10 -> "\\n";
+                % Horizontal tab (HT):
+                09 -> "\\t";
                 Other -> Other
             end,
-            inspect_maybe_utf8_string(Rest, Acc ++ [Head2]);
+            inspect_maybe_utf8_string(Rest, Acc ++ [Escaped]);
 
         _Else ->
             not_an_utf8_string
