@@ -356,7 +356,7 @@ inspect(Binary) when is_binary(Binary) ->
             Segments = [erlang:integer_to_list(X) || <<X>> <= Binary],
             ["<<", lists:join(", ", Segments), ">>"];
         InspectedUtf8String ->
-            ["\"", lists:reverse(InspectedUtf8String), "\""]
+            InspectedUtf8String
         end;
 inspect(List) when is_list(List) ->
     case inspect_list(List) of
@@ -399,7 +399,7 @@ inspect_list([First | ImproperTail]) ->
 
 inspect_maybe_utf8_string(Binary, Acc) ->
     case Binary of
-        <<>> -> Acc;
+        <<>> -> ["\"", lists:reverse(["\"" | Acc])];
         <<Head/utf8, Rest/binary>> ->
             Escaped = case Head of
                 % Double quotes:
