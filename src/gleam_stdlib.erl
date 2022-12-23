@@ -386,7 +386,7 @@ inspect(Any) when is_function(Any) ->
 inspect(Any) ->
     ["//erl(", io_lib:format("~p", [Any]), ")"].
 
-inspect_list([])  ->
+inspect_list([]) ->
     {proper, []};
 inspect_list([Head]) ->
     {proper, [inspect(Head)]};
