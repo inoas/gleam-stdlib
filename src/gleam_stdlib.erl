@@ -401,16 +401,11 @@ inspect_maybe_utf8_string(Binary, Acc) ->
         <<>> -> {ok, ["\"", lists:reverse(Acc), "\""]};
         <<Head/utf8, Rest/binary>> ->
             Escaped = case Head of
-                % Double quotes:
-                34 -> "\\\"";
-                % Backslash:
-                92 -> "\\\\";
-                % Carriage return (CR):
-                13 -> "\\r";
-                % Line feed (LF):
-                10 -> "\\n";
-                % Horizontal tab (HT):
-                09 -> "\\t";
+                $" -> "\\\"";
+                $\\ -> "\\\\";
+                $\r -> "\\r";
+                $\n -> "\\n";
+                $\t -> "\\t";
                 Other -> Other
             end,
             inspect_maybe_utf8_string(Rest, [Escaped | Acc]);

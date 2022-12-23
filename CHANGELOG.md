@@ -8,13 +8,16 @@
 - The `io.debug` function now prints to stderr instead of stdout when using
   the Erlang target or running in Node.js (but still uses `console.log`
   when running as JavaScript in a browser)
+- The `iterator` module gains the `transform` function.
 - The `list.at` function now returns `Error(Nil)` if given index is smaller than
   zero, instead of returning the first element.
 - Fixed a bug where some string functions would incorrectly handle newlines when
   iterating over graphemes in older JavaScript environments that do not have the
   `Intl.Segmenter` class.
-- Fixed `string.inspect`'s escaping of `"`, `\`, `\n`, `\r`, `\r\n`, and `\t`, which in
-  turn fixes `io.debug`'s output of such strings.
+- The `string` module gains `to_utf_codepoints`, `from_utf_codepoints`, and
+  `utf_codepoint_to_int` functions.
+- Fixed `string.inspect`'s escaping of `"`, `\`, `\n`, `\r`, `\r\n`, and `\t`,
+  which in turn fixes `io.debug`'s output of such strings.
 
 ## v0.25.0 - 2022-11-19
 

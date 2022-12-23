@@ -406,6 +406,71 @@ pub fn to_graphemes_test() {
   ])
 }
 
+pub fn to_utf_codepoints_test() {
+  ""
+  |> string.to_utf_codepoints
+  |> should.equal([])
+
+  "gleam"
+  |> string.to_utf_codepoints
+  |> should.equal({
+    assert #(Ok(g), Ok(l), Ok(e), Ok(a), Ok(m)) = #(
+      string.utf_codepoint(103),
+      string.utf_codepoint(108),
+      string.utf_codepoint(101),
+      string.utf_codepoint(97),
+      string.utf_codepoint(109),
+    )
+    [g, l, e, a, m]
+  })
+
+  "🏳️‍🌈"
+  |> string.to_utf_codepoints
+  |> should.equal({
+    // ["🏳", "️", "‍", "🌈"]
+    assert #(
+      Ok(waving_white_flag),
+      Ok(variant_selector_16),
+      Ok(zero_width_joiner),
+      Ok(rainbow),
+    ) = #(
+      string.utf_codepoint(127987),
+      string.utf_codepoint(65039),
+      string.utf_codepoint(8205),
+      string.utf_codepoint(127752),
+    )
+    [waving_white_flag, variant_selector_16, zero_width_joiner, rainbow]
+  })
+}
+
+pub fn from_utf_codepoints_test() {
+  ""
+  |> string.to_utf_codepoints
+  |> string.from_utf_codepoints
+  |> should.equal("")
+
+  "gleam"
+  |> string.to_utf_codepoints
+  |> string.from_utf_codepoints
+  |> should.equal("gleam")
+
+  "🏳️‍🌈"
+  |> string.to_utf_codepoints
+  |> string.from_utf_codepoints
+  |> should.equal("🏳️‍🌈")
+
+  {
+    assert #(Ok(a), Ok(b), Ok(c)) = #(
+      string.utf_codepoint(97),
+      string.utf_codepoint(98),
+      string.utf_codepoint(99),
+    )
+    [a, b, c]
+  }
+  |> string.from_utf_codepoints
+  |> should.equal("abc")
+}
+
 pub fn utf_codepoint_test() {
   string.utf_codepoint(1_114_444)
   |> should.be_error
@@ -420,6 +485,15 @@ pub fn utf_codepoint_test() {
 pub fn bit_string_utf_codepoint_test() {
   assert Ok(snake) = string.utf_codepoint(128_013)
   should.equal(<<snake:utf8_codepoint>>, <<"🐍":utf8>>)
+}
+
+pub fn utf_codepoint_to_int_test() {
+  {
+    assert Ok(ordinal_value) = string.utf_codepoint(128_013)
+    ordinal_value
+  }
+  |> string.utf_codepoint_to_int
+  |> should.equal(128_013)
 }
 
 pub fn to_option_test() {
