@@ -745,8 +745,8 @@ pub fn inspect_test() {
   string.inspect("Hello \"Manuel\"!")
   |> should.equal("\"Hello \\\"Manuel\\\"!\"")
 
-  string.inspect("💜 Gleam")
-  |> should.equal("\"💜 Gleam\"")
+  string.inspect("👨‍👩‍👦‍👦 💜 Gleam")
+  |> should.equal("\"👨‍👩‍👦‍👦 💜 Gleam\"")
 
   string.inspect("True")
   |> should.equal("\"True\"")
@@ -775,8 +775,10 @@ pub fn inspect_test() {
   string.inspect([#(1, 2, 3), #(1, 2, 3)])
   |> should.equal("[#(1, 2, 3), #(1, 2, 3)]")
 
-  string.inspect(#([1, 2, 3], "🌈", #(1, "1", True)))
-  |> should.equal("#([1, 2, 3], \"🌈\", #(1, \"1\", True))")
+  string.inspect(#([1, 2, 3], "🌈", "🏳️‍🌈", #(1, "1", True)))
+  |> should.equal(
+    "#([1, 2, 3], \"🌈\", \"🏳️‍🌈\", #(1, \"1\", True))",
+  )
 
   string.inspect(Nil)
   |> should.equal("Nil")

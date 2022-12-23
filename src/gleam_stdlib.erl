@@ -406,7 +406,7 @@ inspect_maybe_utf8_string(Binary, Acc) ->
                 $\r -> <<$\\, $r>>;
                 $\n -> <<$\\, $n>>;
                 $\t -> <<$\\, $t>>;
-                Other -> <<Other>>
+                Other -> <<Other/utf8>>
             end,
             inspect_maybe_utf8_string(Rest, <<Acc/binary, Escaped/binary>>);
         _ -> {error, not_a_utf8_string}
