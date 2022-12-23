@@ -351,7 +351,7 @@ inspect(Any) when is_integer(Any) ->
 inspect(Any) when is_float(Any) ->
     io_lib_format:fwrite_g(Any);
 inspect(Binary) when is_binary(Binary) ->
-    case inspect_maybe_utf8_string(Binary, []) of
+    case inspect_maybe_utf8_string(Binary, <<>>) of
         {ok, InspectedUtf8String} -> InspectedUtf8String;
         {error, not_a_utf8_string} ->
             Segments = [erlang:integer_to_list(X) || <<X>> <= Binary],
@@ -398,17 +398,17 @@ inspect_list([First | ImproperTail]) ->
 
 inspect_maybe_utf8_string(Binary, Acc) ->
     case Binary of
-        <<>> -> {ok, ["\"", lists:reverse(Acc), "\""]};
+        <<>> -> {ok, <<$", Acc/binary, $">>};
         <<Head/utf8, Rest/binary>> ->
             Escaped = case Head of
-                $" -> "\\\"";
-                $\\ -> "\\\\";
-                $\r -> "\\r";
-                $\n -> "\\n";
-                $\t -> "\\t";
-                Other -> Other
+                $" -> <<$\\, $">>;
+                $\\ -> <<$\\, $\\>>;
+                $\r -> <<$\\, $r>>;
+                $\n -> <<$\\, $n>>;
+                $\t -> <<$\\, $t>>;
+                Other -> <<Other>>
             end,
-            inspect_maybe_utf8_string(Rest, [Escaped | Acc]);
+            inspect_maybe_utf8_string(Rest, <<Acc/binary, Escaped/binary>>);
         _ -> {error, not_a_utf8_string}
     end.
 
