@@ -434,10 +434,10 @@ pub fn to_utf_codepoints_test() {
       Ok(zero_width_joiner),
       Ok(rainbow),
     ) = #(
-      string.utf_codepoint(127987),
-      string.utf_codepoint(65039),
+      string.utf_codepoint(127_987),
+      string.utf_codepoint(65_039),
       string.utf_codepoint(8205),
-      string.utf_codepoint(127752),
+      string.utf_codepoint(127_752),
     )
     [waving_white_flag, variant_selector_16, zero_width_joiner, rainbow]
   })
@@ -656,122 +656,65 @@ pub fn inspect_test() {
   string.inspect([1.5])
   |> should.equal("[1.5]")
 
-  // These variables are used in the tests below to be able to map the test
-  // results in a simple 1-to-1 transformation from the test inputs, for
-  // enhanced readability and test proof reading:
-  // double-quote
-  let q = "\""
-  // backslash
-  let b = "\\"
-  // newline
-  let n = "n"
-  // carriage return
-  let r = "r"
-  // tab
-  let t = "t"
-
-  string.inspect("")
-  |> should.equal(string.concat([q, q]))
   string.inspect("")
   |> should.equal("\"\"")
 
   string.inspect("\\")
-  |> should.equal(string.concat([q, b, b, q]))
-  string.inspect("\\")
   |> should.equal("\"\\\\\"")
 
-  string.inspect("\\\\")
-  |> should.equal(string.concat([q, b, b, b, b, q]))
   string.inspect("\\\\")
   |> should.equal("\"\\\\\\\\\"")
 
   string.inspect("\\\\\\")
-  |> should.equal(string.concat([q, b, b, b, b, b, b, q]))
-  string.inspect("\\\\\\")
   |> should.equal("\"\\\\\\\\\\\\\"")
 
   string.inspect("\"")
-  |> should.equal(string.concat([q, b, q, q]))
-  string.inspect("\"")
   |> should.equal("\"\\\"\"")
-
-  string.inspect("\"\"")
-  |> should.equal(string.concat([q, b, q, b, q, q]))
   string.inspect("\"\"")
   |> should.equal("\"\\\"\\\"\"")
 
   string.inspect("\r")
-  |> should.equal(string.concat([q, b, r, q]))
-  string.inspect("\r")
   |> should.equal("\"\\r\"")
 
-  string.inspect("\n")
-  |> should.equal(string.concat([q, b, n, q]))
   string.inspect("\n")
   |> should.equal("\"\\n\"")
 
   string.inspect("\t")
-  |> should.equal(string.concat([q, b, t, q]))
-  string.inspect("\t")
   |> should.equal("\"\\t\"")
 
-  string.inspect("\r\r")
-  |> should.equal(string.concat([q, b, r, b, r, q]))
   string.inspect("\r\r")
   |> should.equal("\"\\r\\r\"")
 
   string.inspect("\n\n")
-  |> should.equal(string.concat([q, b, n, b, n, q]))
-  string.inspect("\n\n")
   |> should.equal("\"\\n\\n\"")
 
-  string.inspect("\r\n")
-  |> should.equal(string.concat([q, b, r, b, n, q]))
   string.inspect("\r\n")
   |> should.equal("\"\\r\\n\"")
 
   string.inspect("\n\r")
-  |> should.equal(string.concat([q, b, n, b, r, q]))
-  string.inspect("\n\r")
   |> should.equal("\"\\n\\r\"")
 
-  string.inspect("\t\t")
-  |> should.equal(string.concat([q, b, t, b, t, q]))
   string.inspect("\t\t")
   |> should.equal("\"\\t\\t\"")
 
   string.inspect("\t\n")
-  |> should.equal(string.concat([q, b, t, b, n, q]))
-  string.inspect("\t\n")
   |> should.equal("\"\\t\\n\"")
 
-  string.inspect("\n\t")
-  |> should.equal(string.concat([q, b, n, b, t, q]))
   string.inspect("\n\t")
   |> should.equal("\"\\n\\t\"")
 
   string.inspect("\t\r")
-  |> should.equal(string.concat([q, b, t, b, r, q]))
-  string.inspect("\t\r")
   |> should.equal("\"\\t\\r\"")
 
-  string.inspect("\r\t")
-  |> should.equal(string.concat([q, b, r, b, t, q]))
   string.inspect("\r\t")
   |> should.equal("\"\\r\\t\"")
 
   string.inspect("\\\n\\")
-  |> should.equal(string.concat([q, b, b, b, n, b, b, q]))
-  string.inspect("\\\n\\")
   |> should.equal("\"\\\\\\n\\\\\"")
 
   string.inspect("\\\"\\")
-  |> should.equal(string.concat([q, b, b, b, q, b, b, q]))
-  string.inspect("\\\"\\")
   |> should.equal("\"\\\\\\\"\\\\\"")
 
-  string.inspect("\\\"\"\\")
-  |> should.equal(string.concat([q, b, b, b, q, b, q, b, b, q]))
   string.inspect("\\\"\"\\")
   |> should.equal("\"\\\\\\\"\\\"\\\\\"")
 
