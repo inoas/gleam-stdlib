@@ -1,17 +1,14 @@
 -module(gleam_stdlib).
 
 -export([map_get/2, iodata_append/2, identity/1, decode_int/1, decode_bool/1,
-         decode_float/1, decode_list/1, decode_option/2,
-         decode_field/2, parse_int/1, parse_float/1, less_than/2,
-         string_pop_grapheme/1, string_starts_with/2, wrap_list/1,
-         string_ends_with/2, string_pad/4, decode_map/1, uri_parse/1,
-         bit_string_int_to_u32/1, bit_string_int_from_u32/1, decode_result/1,
-         bit_string_slice/3, decode_bit_string/1, compile_regex/2, regex_scan/2,
-         percent_encode/1, percent_decode/1, regex_check/2, regex_split/2,
-         base_decode64/1, parse_query/1, bit_string_concat/1, size_of_tuple/1,
-         decode_tuple/1, tuple_get/2, classify_dynamic/1, print/1, println/1,
-         print_error/1, println_error/1, inspect/1, float_to_string/1,
-         int_from_base_string/2, inspect_maybe_utf8_string/2]).
+         decode_float/1, decode_list/1, decode_option/2, decode_field/2, parse_int/1,
+         parse_float/1, less_than/2, string_pop_grapheme/1, string_starts_with/2, wrap_list/1,
+         string_ends_with/2, string_pad/4, decode_map/1, uri_parse/1, bit_string_int_to_u32/1,
+         bit_string_int_from_u32/1, decode_result/1, bit_string_slice/3, decode_bit_string/1,
+         compile_regex/2, regex_scan/2, percent_encode/1, percent_decode/1, regex_check/2,
+         regex_split/2, base_decode64/1, parse_query/1, bit_string_concat/1, size_of_tuple/1,
+         decode_tuple/1, tuple_get/2, classify_dynamic/1, print/1, println/1, print_error/1,
+         println_error/1, inspect/1, float_to_string/1, int_from_base_string/2]).
 
 %% Taken from OTP's uri_string module
 -define(DEC2HEX(X),
