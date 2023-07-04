@@ -219,7 +219,7 @@ fn less_than(a: String, b: String) -> Bool
 /// ""
 /// ```
 ///
-pub fn slice(from string: String, at_index idx: Int, length len: Int) -> String {
+pub fn slice(from string: String, length len: Int, at_index idx: Int = 0) -> String {
   case len < 0 {
     True -> ""
     False ->
@@ -599,6 +599,12 @@ fn padding(size: Int, pad_string: String) -> Iterator(String) {
   |> iterator.append(iterator.single(slice(pad_string, 0, extra)))
 }
 
+type Trim {
+	TrimBoth
+	TrimLeft
+	TrimRight
+}
+
 /// Removes whitespace on both sides of a `String`.
 ///
 /// ## Examples
@@ -608,7 +614,7 @@ fn padding(size: Int, pad_string: String) -> Iterator(String) {
 /// "hats"
 /// ```
 ///
-pub fn trim(string: String) -> String {
+pub fn trim(string: String, from: Trim = TrimBoth) -> String {
   do_trim(string)
 }
 
@@ -631,50 +637,6 @@ fn erl_trim(a: String, b: Direction) -> String
 @target(javascript)
 @external(javascript, "../gleam_stdlib.mjs", "trim")
 fn do_trim(string string: String) -> String
-
-/// Removes whitespace on the left of a `String`.
-///
-/// ## Examples
-///
-/// ```gleam
-/// > trim_left("  hats  \n")
-/// "hats  \n"
-/// ```
-///
-pub fn trim_left(string: String) -> String {
-  do_trim_left(string)
-}
-
-@target(erlang)
-fn do_trim_left(string: String) -> String {
-  erl_trim(string, Leading)
-}
-
-@target(javascript)
-@external(javascript, "../gleam_stdlib.mjs", "trim_left")
-fn do_trim_left(string string: String) -> String
-
-/// Removes whitespace on the right of a `String`.
-///
-/// ## Examples
-///
-/// ```gleam
-/// > trim_right("  hats  \n")
-/// "  hats"
-/// ```
-///
-pub fn trim_right(string: String) -> String {
-  do_trim_right(string)
-}
-
-@target(erlang)
-fn do_trim_right(string: String) -> String {
-  erl_trim(string, Trailing)
-}
-
-@target(javascript)
-@external(javascript, "../gleam_stdlib.mjs", "trim_right")
-fn do_trim_right(string string: String) -> String
 
 /// Splits a non-empty `String` into its first element (head) and rest (tail).
 /// This lets you pattern match on `String`s exactly as you would with lists.
@@ -962,7 +924,7 @@ pub fn inspect(term: anything) -> String {
 fn do_inspect(term term: anything) -> StringBuilder
 
 /// Returns the number of bytes in a `String`.
-/// 
+///
 /// This function runs in constant time on Erlang and in linear time on
 /// JavaScript.
 ///

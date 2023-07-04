@@ -524,7 +524,7 @@ fn do_undigits(
 /// 2
 /// ```
 ///
-pub fn random(boundary_a: Int, boundary_b: Int) -> Int {
+pub fn random(boundary_a: Int, boundary_b: Int = 0) -> Int {
   // Based on:
   //
   // ```javascript

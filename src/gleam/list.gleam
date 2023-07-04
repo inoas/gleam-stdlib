@@ -379,21 +379,21 @@ pub fn map(list: List(a), with fun: fn(a) -> b) -> List(b) {
 }
 
 /// Combines two lists into a single list using the given function.
-/// 
+///
 /// If a list is longer than the other the extra elements are dropped.
-/// 
+///
 /// ## Examples
-/// 
+///
 /// ```gleam
 /// > map2([1, 2, 3], [4, 5, 6], fn(x, y) { x + y })
 /// [5, 7, 9]
 /// ```
-/// 
+///
 /// ```gleam
 /// > map2([1, 2], ["a", "b", "c"], fn(i, x) { #(i, x) })
 /// [#(1, "a"), #(2, "b")]
 /// ```
-/// 
+///
 pub fn map2(list1: List(a), list2: List(b), with fun: fn(a, b) -> c) -> List(c) {
   do_map2(list1, list2, fun, [])
 }
@@ -977,9 +977,9 @@ pub fn any(in list: List(a), satisfying predicate: fn(a) -> Bool) -> Bool {
   }
 }
 
-fn do_zip(xs: List(a), ys: List(b), acc: List(#(a, b))) -> List(#(a, b)) {
+fn do_zip(xs: List(a), ys: List(b), acc: List(#(a, b)), zipper: fn(a, b) -> c) -> List(c) {
   case xs, ys {
-    [x, ..xs], [y, ..ys] -> do_zip(xs, ys, [#(x, y), ..acc])
+    [x, ..xs], [y, ..ys] -> do_zip(xs, ys, [zipper(x,y), ..acc])
     _, _ -> reverse(acc)
   }
 }
@@ -1011,8 +1011,14 @@ fn do_zip(xs: List(a), ys: List(b), acc: List(#(a, b))) -> List(#(a, b)) {
 /// [#(1, 3), #(2, 4)]
 /// ```
 ///
-pub fn zip(list: List(a), with other: List(b)) -> List(#(a, b)) {
-  do_zip(list, other, [])
+fn default_zipper_fn(a, b) {
+	#(a, b)
+}
+pub fn zip(list: List(a), with other: List(b), strict: Bool = True, fun: fn(a, b) = default_zipper_fn) -> List(#(a, b)) {
+	case strict {
+	  True -> strict_zip(list, other, default_zipper_fn)
+		Fase -> do_zip(list, other, [], default_zipper_fn)
+	}
 }
 
 /// Takes two lists and returns a single list of 2-element tuples.
@@ -1041,12 +1047,13 @@ pub fn zip(list: List(a), with other: List(b)) -> List(#(a, b)) {
 /// Ok([#(1, 3), #(2, 4)])
 /// ```
 ///
-pub fn strict_zip(
+fn strict_zip(
   list: List(a),
   with other: List(b),
+	fun: fn(a, b),
 ) -> Result(List(#(a, b)), LengthMismatch) {
   case length(of: list) == length(of: other) {
-    True -> Ok(zip(list, other))
+    True -> Ok(zip(list, other, fun))
     False -> Error(LengthMismatch)
   }
 }
@@ -1243,6 +1250,10 @@ fn merge_sort(
   }
 }
 
+type Direction {
+	Ascending
+	Descending
+}
 /// Sorts from smallest to largest based upon the ordering specified by a given
 /// function.
 ///
@@ -1254,8 +1265,11 @@ fn merge_sort(
 /// [1, 2, 3, 4, 4, 5, 6]
 /// ```
 ///
-pub fn sort(list: List(a), by compare: fn(a, a) -> Order) -> List(a) {
-  merge_sort(list, length(list), compare, True)
+pub fn sort(list: List(a), by compare: fn(a, a) -> Order, direction = Ascending) -> List(a) {
+	case direction {
+		Ascending -> merge_sort(list, length(list), compare, True)
+		Descending -> merge_sort(list, length(list), compare, False)
+	}
 }
 
 /// Creates a list of ints ranging from a given start and finish.

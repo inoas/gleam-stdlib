@@ -107,6 +107,18 @@ pub fn length(queue: Queue(a)) -> Int {
   list.length(queue.in) + list.length(queue.out)
 }
 
+type QueueSide {
+	QueueFront
+	QueueBack
+}
+
+pub fn push(onto queue: Queue(a), this item: a, from side: QueueSide = QueueBack) -> Queue(a) {
+	case side {
+		QueueFront -> push_front(onto, item)
+		QueueBack -> push_back(onto, item)
+	}
+}
+
 /// Pushes an element onto the back of the queue.
 ///
 /// # Examples
@@ -131,6 +143,13 @@ pub fn push_back(onto queue: Queue(a), this item: a) -> Queue(a) {
 ///
 pub fn push_front(onto queue: Queue(a), this item: a) -> Queue(a) {
   Queue(in: queue.in, out: [item, ..queue.out])
+}
+
+pub fn pop(onto queue: Queue(a), this item: a, from side: QueueSide = QueueFront) -> Queue(a) {
+	case side {
+		QueueFront -> pop_front(onto, item)
+		QueueBack -> pop_back(onto, item)
+	}
 }
 
 /// Gets the last element from the queue, returning the
@@ -270,10 +289,13 @@ fn check_equal(
 /// This function runs in linear time multiplied by the time taken by the
 /// element equality checking function.
 ///
+fn is_logically_equal_default(a: t, b: t) {
+	a == b
+}
 pub fn is_logically_equal(
   a: Queue(t),
   to b: Queue(t),
-  checking element_is_equal: fn(t, t) -> Bool,
+  checking element_is_equal: fn(t, t) -> Bool = is_logically_equal_default,
 ) -> Bool {
   check_equal(a.out, a.in, b.out, b.in, element_is_equal)
 }

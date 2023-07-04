@@ -412,7 +412,7 @@ fn do_product(numbers: List(Float), initial: Float) -> Float {
 /// 2.646355926896028
 /// ```
 ///
-pub fn random(boundary_a: Float, boundary_b: Float) -> Float {
+pub fn random(boundary_a: Float, boundary_b: Float = 0) -> Float {
   // Based on:
   //
   // ```javascript
