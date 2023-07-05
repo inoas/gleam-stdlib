@@ -30,38 +30,34 @@ pub type CompileError {
   )
 }
 
-pub type Options {
-  Options(case_insensitive: Bool, multi_line: Bool)
-}
-
 /// Creates a `Regex` with some additional options.
 ///
 /// ## Examples
 ///
 /// ```gleam
-/// > let options = Options(case_insensitive: False, multi_line: True)
-/// > let assert Ok(re) = compile("^[0-9]", with: options)
+/// > let assert Ok(re) = compile("^[0-9]")
 /// > check(re, "abc\n123")
 /// True
 /// ```
 ///
 /// ```gleam
-/// > let options = Options(case_insensitive: True, multi_line: False)
-/// > let assert Ok(re) = compile("[A-Z]", with: options)
+/// > let assert Ok(re) = compile("[A-Z]", case_insensitive: True)
 /// > check(re, "abc123")
 /// True
 /// ```
 ///
 pub fn compile(
   pattern: String,
-  with options: Options,
+  case_insensitive = False
+	multi_line = True,
+	ascii_only = False,
 ) -> Result(Regex, CompileError) {
-  do_compile(pattern, options)
+  do_compile(pattern, case_insensitive, multi_line, ascii_only)
 }
 
 @external(erlang, "gleam_stdlib", "compile_regex")
 @external(javascript, "../gleam_stdlib.mjs", "compile_regex")
-fn do_compile(a: String, with with: Options) -> Result(Regex, CompileError)
+fn do_compile(a: String, case_insensitive, multi_line, ascii_only) -> Result(Regex, CompileError)
 
 /// Creates a new `Regex`.
 ///
@@ -89,7 +85,7 @@ fn do_compile(a: String, with with: Options) -> Result(Regex, CompileError)
 /// ```
 ///
 pub fn from_string(pattern: String) -> Result(Regex, CompileError) {
-  compile(pattern, Options(case_insensitive: False, multi_line: False))
+  compile(pattern, case_insensitive: False, multi_line: False)
 }
 
 /// Returns a boolean indicating whether there was a match or not.
