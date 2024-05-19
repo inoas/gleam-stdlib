@@ -1,0 +1,133 @@
+================================================================================
+==== data set: sorted list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 20 s
+
+Benchmarking list.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                  ips        average  deviation         median         99th %
+list.sort()          6.18      161.89 ms     ±5.12%      161.85 ms      179.91 ms
+
+Memory usage statistics:
+
+Name           Memory usage
+list.sort()        25.94 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                average  deviation         median         99th %
+list.sort()          4.88 M     ±0.05%         4.88 M         4.89 M
+
+
+================================================================================
+==== data set: reversed list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 20 s
+
+Benchmarking list.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                  ips        average  deviation         median         99th %
+list.sort()          5.76      173.74 ms     ±5.96%      172.62 ms      212.77 ms
+
+Memory usage statistics:
+
+Name           Memory usage
+list.sort()        25.94 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                average  deviation         median         99th %
+list.sort()          4.95 M     ±0.05%         4.95 M         4.95 M
+
+
+================================================================================
+==== data set: shuffled list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 20 s
+
+Benchmarking list.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                  ips        average  deviation         median         99th %
+list.sort()          4.05      246.91 ms     ±2.84%      245.76 ms      273.28 ms
+
+Memory usage statistics:
+
+Name           Memory usage
+list.sort()        25.94 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                average  deviation         median         99th %
+list.sort()          6.33 M     ±0.08%         6.33 M         6.34 M
