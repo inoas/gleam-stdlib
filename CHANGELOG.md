@@ -2,8 +2,6 @@
 
 ## Unreleased
 
-- The `sort` function of the `list` module has been optimised in case it's
-  working on an already sorted list.
 - The `dict` module gains the `each` function.
 - The `list` module gains the `wrap` function.
 - The `iterator` module gains the `find_map` function.
