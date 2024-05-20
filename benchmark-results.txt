@@ -1,0 +1,400 @@
+gleam clean && \
+gleam build && \
+gleam run -m my_benchmark
+
+...
+
+    Running my_benchmark.main
+
+
+================================================================================
+==== data set: sorted list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()        135.80        7.36 ms    ±32.72%        7.32 ms       13.65 ms
+list.sort()                     70.07       14.27 ms    ±15.15%       13.78 ms       20.26 ms
+list_pre_pr.sort()               5.77      173.20 ms     ±3.39%      173.14 ms      186.76 ms
+
+Comparison:
+list_sort_erlang.sort()        135.80
+list.sort()                     70.07 - 1.94x slower +6.91 ms
+list_pre_pr.sort()               5.77 - 23.52x slower +165.83 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()         2.43 MB
+list.sort()                     3.05 MB - 1.26x memory usage +0.62 MB
+list_pre_pr.sort()             25.94 MB - 10.69x memory usage +23.51 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()        112.81 K     ±3.47%       112.06 K       125.64 K
+list.sort()                    406.23 K     ±0.56%       405.75 K       412.87 K
+list_pre_pr.sort()            4884.21 K     ±0.05%      4882.68 K      4889.42 K
+
+Comparison:
+list_sort_erlang.sort()        112.06 K
+list.sort()                    406.23 K - 3.60x reduction count +293.42 K
+list_pre_pr.sort()            4884.21 K - 43.29x reduction count +4771.40 K
+
+
+================================================================================
+==== data set: reversed list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()        248.90        4.02 ms    ±20.28%        4.25 ms        5.79 ms
+list.sort()                     97.36       10.27 ms    ±10.93%       10.10 ms       13.79 ms
+list_pre_pr.sort()               5.50      181.96 ms     ±3.06%      181.78 ms      196.22 ms
+
+Comparison:
+list_sort_erlang.sort()        248.90
+list.sort()                     97.36 - 2.56x slower +6.25 ms
+list_pre_pr.sort()               5.50 - 45.29x slower +177.95 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()         1.53 MB
+list.sort()                     1.53 MB - 1.00x memory usage +0.00002 MB
+list_pre_pr.sort()             25.94 MB - 17.00x memory usage +24.41 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()        110.34 K     ±2.18%       110.30 K       116.43 K
+list.sort()                    306.44 K     ±0.82%       305.41 K       311.34 K
+list_pre_pr.sort()            4946.54 K     ±0.06%      4945.07 K      4955.07 K
+
+Comparison:
+list_sort_erlang.sort()        110.30 K
+list.sort()                    306.44 K - 2.78x reduction count +196.10 K
+list_pre_pr.sort()            4946.54 K - 44.83x reduction count +4836.20 K
+
+
+================================================================================
+==== data set: shuffled list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()         16.71       59.84 ms    ±12.65%       59.58 ms       83.38 ms
+list.sort()                      5.46      183.27 ms     ±2.10%      182.85 ms      194.21 ms
+list_pre_pr.sort()               4.07      245.89 ms     ±2.60%      245.39 ms      262.00 ms
+
+Comparison:
+list_sort_erlang.sort()         16.71
+list.sort()                      5.46 - 3.06x slower +123.43 ms
+list_pre_pr.sort()               4.07 - 4.11x slower +186.06 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()        17.26 MB
+list.sort()                    28.59 MB - 1.66x memory usage +11.34 MB
+list_pre_pr.sort()             25.94 MB - 1.50x memory usage +8.68 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()          1.15 M     ±0.47%         1.15 M         1.16 M
+list.sort()                      5.23 M     ±0.11%         5.23 M         5.24 M
+list_pre_pr.sort()               6.33 M     ±0.07%         6.33 M         6.34 M
+
+Comparison:
+list_sort_erlang.sort()          1.15 M
+list.sort()                      5.23 M - 4.54x reduction count +4.08 M
+list_pre_pr.sort()               6.33 M - 5.50x reduction count +5.18 M
+
+
+
+
+
+
+
+
+gleam clean && \
+gleam build && \
+gleam run -m my_benchmark
+
+...
+
+    Running my_benchmark.main
+
+
+================================================================================
+==== data set: sorted list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()        134.74        7.42 ms    ±33.00%        7.42 ms       14.41 ms
+list.sort()                     72.26       13.84 ms    ±15.84%       13.36 ms       20.07 ms
+list_pre_pr.sort()               6.00      166.55 ms     ±7.96%      163.59 ms      214.58 ms
+
+Comparison:
+list_sort_erlang.sort()        134.74
+list.sort()                     72.26 - 1.86x slower +6.42 ms
+list_pre_pr.sort()               6.00 - 22.44x slower +159.13 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()         2.43 MB
+list.sort()                     3.05 MB - 1.26x memory usage +0.62 MB
+list_pre_pr.sort()             25.94 MB - 10.69x memory usage +23.51 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()        112.69 K     ±3.32%       111.87 K       125.54 K
+list.sort()                    406.46 K     ±0.62%       406.18 K       413.26 K
+list_pre_pr.sort()            4884.32 K     ±0.06%      4883.57 K      4893.03 K
+
+Comparison:
+list_sort_erlang.sort()        111.87 K
+list.sort()                    406.46 K - 3.61x reduction count +293.76 K
+list_pre_pr.sort()            4884.32 K - 43.34x reduction count +4771.62 K
+
+
+================================================================================
+==== data set: reversed list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()        249.71        4.00 ms    ±20.76%        4.25 ms        6.08 ms
+list.sort()                    102.85        9.72 ms    ±10.03%        9.63 ms       12.98 ms
+list_pre_pr.sort()               5.70      175.41 ms     ±4.96%      175.17 ms      198.51 ms
+
+Comparison:
+list_sort_erlang.sort()        249.71
+list.sort()                    102.85 - 2.43x slower +5.72 ms
+list_pre_pr.sort()               5.70 - 43.80x slower +171.40 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()         1.53 MB
+list.sort()                     1.53 MB - 1.00x memory usage +0.00002 MB
+list_pre_pr.sort()             25.94 MB - 17.00x memory usage +24.41 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()        110.26 K     ±2.15%       110.22 K       116.38 K
+list.sort()                    306.38 K     ±0.79%       305.47 K       311.75 K
+list_pre_pr.sort()            4946.68 K     ±0.05%      4945.54 K      4954.63 K
+
+Comparison:
+list_sort_erlang.sort()        110.22 K
+list.sort()                    306.38 K - 2.78x reduction count +196.12 K
+list_pre_pr.sort()            4946.68 K - 44.86x reduction count +4836.42 K
+
+
+================================================================================
+==== data set: shuffled list
+================================================================================
+
+Not all of your protocols have been consolidated. In order to achieve the
+best possible accuracy for benchmarks, please ensure protocol
+consolidation is enabled in your benchmarking environment.
+
+Operating System: macOS
+CPU Information: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
+Number of Available Cores: 16
+Available memory: 32 GB
+Elixir 1.16.1
+Erlang 26.2.2
+JIT enabled: false
+
+Benchmark suite executing with the following configuration:
+warmup: 4 s
+time: 4 s
+memory time: 8 s
+reduction time: 4 s
+parallel: 16
+inputs: none specified
+Estimated total run time: 1 min
+
+Benchmarking list.sort() ...
+Benchmarking list_pre_pr.sort() ...
+Benchmarking list_sort_erlang.sort() ...
+Calculating statistics...
+Formatting results...
+
+Name                              ips        average  deviation         median         99th %
+list_sort_erlang.sort()         16.53       60.51 ms    ±12.67%       57.68 ms       86.25 ms
+list.sort()                      5.45      183.39 ms     ±2.77%      182.70 ms      196.80 ms
+list_pre_pr.sort()               4.15      240.90 ms     ±2.87%      240.51 ms      262.32 ms
+
+Comparison:
+list_sort_erlang.sort()         16.53
+list.sort()                      5.45 - 3.03x slower +122.89 ms
+list_pre_pr.sort()               4.15 - 3.98x slower +180.39 ms
+
+Memory usage statistics:
+
+Name                       Memory usage
+list_sort_erlang.sort()        18.54 MB
+list.sort()                    28.60 MB - 1.54x memory usage +10.06 MB
+list_pre_pr.sort()             25.94 MB - 1.40x memory usage +7.40 MB
+
+**All measurements for memory usage were the same**
+
+Reduction count statistics:
+
+Name                            average  deviation         median         99th %
+list_sort_erlang.sort()          1.15 M     ±0.78%         1.15 M         1.18 M
+list.sort()                      5.26 M     ±0.10%         5.25 M         5.27 M
+list_pre_pr.sort()               6.33 M     ±0.08%         6.33 M         6.34 M
+
+Comparison:
+list_sort_erlang.sort()          1.15 M
+list.sort()                      5.26 M - 4.56x reduction count +4.10 M
+list_pre_pr.sort()               6.33 M - 5.48x reduction count +5.17 M
