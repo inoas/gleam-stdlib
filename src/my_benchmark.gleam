@@ -1,5 +1,7 @@
 import gleam/int
 import gleam/list
+import gleam/list_pre_pr
+import gleam/list_sort_erlang
 import glychee/benchmark
 import glychee/configuration
 
@@ -16,6 +18,12 @@ pub fn main() {
   // Run the benchmarks
   benchmark.run(
     [
+      benchmark.Function(label: "list_sort_erlang.sort()", callable: fn(test_data) {
+        fn() { list_sort_erlang.sort(test_data) }
+      }),
+      benchmark.Function(label: "list_pre_pr.sort()", callable: fn(test_data) {
+        fn() { list_pre_pr.sort(test_data, int.compare) }
+      }),
       benchmark.Function(label: "list.sort()", callable: fn(test_data) {
         fn() { list.sort(test_data, int.compare) }
       }),
